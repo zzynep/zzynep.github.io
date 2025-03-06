@@ -1,16 +1,57 @@
+/* 1. Background gradient for board */
 #board {
-    background: black;
-    width: 300px;
-    height: 300px;
-    left: 0px;
-    top: 0px;
+    background: linear-gradient(45deg, #f0f0f0, #a0a0a0); /* Subtle gradient */
+    width: 500px;   /* Larger board */
+    height: 500px;
+    position: relative;  /* Needed for absolute positioning of circles */
+    overflow: hidden;  /* Prevent circles from overflowing outside the box */
+    margin: 50px auto;  /* Center the board horizontally */
+    border-radius: 15px;  /* Rounded corners for the board */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Soft shadow around the board */
 }
 
-
+/* 2. Circles with random colors, floating animation */
 .circle {
-    background: blue;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
+    background: rgb(19, 83, 51);
+    width: 40px; /* Large circle */
+    height: 40px;
+    border-radius: 50%;  /* Perfectly round */
     position: absolute;
+    border: 3px solid white; /* White border for contrast */
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3); /* Add shadow to circles */
+    transition: transform 0.2s ease, background 0.5s ease;  /* Smooth transitions for hover */
+    animation: float 5s ease-in-out infinite; /* Floating animation */
+}
+
+/* 3. Floating animation for circles */
+@keyframes float {
+    0% {
+        transform: translateX(0) translateY(0); /* Start from the original position */
+    }
+    50% {
+        transform: translateX(100px) translateY(-100px); /* Move to the right and up */
+    }
+    100% {
+        transform: translateX(0) translateY(0); /* Return to the original position */
+    }
+}
+
+/* 4. Hover effect on circles */
+.circle:hover {
+    background: rgb(20, 13, 1);  /* Color change on hover */
+    transform: scale(1.3); /* Slightly enlarge the circle */
+}
+
+/* 5. Random colors for each circle */
+.circle:nth-child(odd) {
+    background: linear-gradient(45deg, #267135, #37ff003f); /* Red-orange gradient */
+}
+
+.circle:nth-child(even) {
+    background: linear-gradient(45deg, #034d2f, #055624); /* Green-blue gradient */
+}
+
+/* Add more randomness with specific children */
+.circle:nth-child(3n) {
+    background: linear-gradient(45deg, #0c7211, #0b7a4e); /* Pink gradient */
 }
