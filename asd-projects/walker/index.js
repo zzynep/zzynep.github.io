@@ -27,6 +27,7 @@ function runProgram() {
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL); // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeyDown); // change 'eventType' to the type of event you want to handle
+  $(document).on("keyup",handleKeyUp);
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -36,30 +37,42 @@ function runProgram() {
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
-  function newFrame() {}
+  function newFrame() {
+    repositionGameItem();
+    redrawGameItem();
+  }
 
   /* 
   Called in response to events.
   */
   function handleKeyDown(event) {
-    if (event.which === KEY.RIGHT) {
-      console.log("rigth pressed");
-    }
-    if (event.which === KEY.UP) {
-      console.log("up pressed");
-    }
     if (event.which === KEY.LEFT) {
-      console.log("left pressed");
-    }
-    if (event.which === KEY.DOWN) {
-      console.log("down pressed");
+      walker.speedX = -5;
+    } else if (event.which === KEY.RIGHT) {
+      walker.speedX = 5;
+    } else if (event.which === KEY.UP) {
+      walker.speedY = -5;
+    } else if (event.which === KEY.DOWN) {
+      walker.speedY = 5;
     }
   }
+   function handleKeyUp(event) {
+    
+   }
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 
+  function repositionGameItem() {
+    walker.x += walker.speedX;
+    walker.y += walker.speedY;
+  }
+  function redrawGameItem() {
+    $("#walker").css("left", walker.x);
+    $("#walker").css("top", walker.y);
+  }
+ 
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
