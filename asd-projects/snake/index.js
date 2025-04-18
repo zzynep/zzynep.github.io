@@ -43,10 +43,10 @@ init();
 
 function init() {
   // TODO 4c-2: initialize the snake
-  makeApple();
+
   // initialize the snake's body as an empty Array
   snake.body = [];
-
+  makeApple();
   // make the first snakeSquare and set it as the head
   makeSnakeSquare(10, 10);
   snake.head = snake.body[0];
@@ -69,7 +69,7 @@ function init() {
 function update() {
   // TODO 5b: Fill in the update function's code block
   moveSnake();
-
+  console.log(snake);
   if (hasHitWall() || hasCollidedWithSnake()) {
     endGame();
   }
@@ -350,7 +350,7 @@ function repositionSquare(square) {
 function getRandomAvailablePosition() {
   var spaceIsAvailable;
   var randomPosition = {};
-
+ 
   /* Generate random positions until one is found that doesn't overlap with the snake */
   while (!spaceIsAvailable) {
     randomPosition.column = Math.floor(Math.random() * COLUMNS);
