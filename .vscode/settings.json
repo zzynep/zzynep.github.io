@@ -18,5 +18,11 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "prettier.tabWidth": 2
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
   }
 }
